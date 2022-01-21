@@ -2,12 +2,14 @@ const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 const DB = require('./services/db');
+const cors =require('cors');
 const UserRouter = require("./routes/user.route");
 
 dotenv.config();
 DB.connectToDB();
 
 app.use(express.json());
+app.use(cors());
 app.use(UserRouter);
 
 app.get("/healthcheck", function(req,res){

@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
      {
            username: {
                type: String,
-               required:true
+               required:true,
+               unique:true
            },
            password: {
                type: String,
@@ -14,7 +15,8 @@ const mongoose = require('mongoose');
            },
            emailId: {
                type:String,
-               required:true
+               required:true,
+               unique:true
            },
            mobileNumber: {
                type:Number,
