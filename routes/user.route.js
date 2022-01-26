@@ -49,4 +49,5 @@ var authMiddleware = (req,res,next) => {
 router.post("/changePassword",authMiddleware,userController.changePassword);
 router.post('/register',userController.register);
 router.post("/login", userController.login);
+router.post("/forgotPassword", userController.forgotPassword);
 module.exports = router;
