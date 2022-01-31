@@ -122,12 +122,31 @@ exports.forgotPassword = async (req,res) =>{
             text: "Password Reset",
             html :`
 
-                 <h1><a href='https://www.facebook.com'>Click here to  Reset the password</a></h1>
-                 
+                 Hello ${emailId},
+                 Please find the below link to reset new password.
+                <a href='http://localhost:3000/#/resetPassword?email=${emailId}'>Reset Password</a>
                   `
        }
         emailService.sendEmail(options);
      }
     console.log(resp);
     res.send("email Sent");
+}
+
+exports.resetPassword = function(req,res){
+    let emailId = req.body.emailId;
+    var salt = bcrypt.genSaltSync(10);
+    let password = bcrypt.hashSync(req.body.newPassword,salt);
+     console.log(emailId);
+     console.log(password);
+     userModel.updateOne({emailId:emailId},{password:password},function(err){
+         if(err){
+             console.log('err', err);
+             res.send(err.message);
+         }
+         else
+         {
+             res.send("Password updated successfully!");
+         }
+     })
 }

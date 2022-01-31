@@ -18,9 +18,9 @@ const mongoose = require('mongoose');
                required:true,
                unique:true
            },
-           mobileNumber: {
-               type:Number,
-               required:true
+           role: {
+               type:String,
+               default: "CUSTOMER"
            }
      }
  )
